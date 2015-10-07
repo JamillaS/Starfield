@@ -1,33 +1,45 @@
 //your code here
 
-NormalParticle[] bits;
+NormalParticle[] particles;
 
 void setup()
 {
 	background(0);
 	size(400, 400);
 	/*
-	bits = new NormalParticle[30];
-	for(int i = 0; i < bits.length; i ++)
+	particles = new NormalParticle[30];
+	for(int i = 0; i < particles.length; i ++)
 	{
-		bits[i] = new NormalParticle();
+		particles[i] = new NormalParticle();
+		particles[0] = new OddballParticle();
 	}
 	*/
-	Particle[] bits = new Particle[30];
-	for(int j = 0; j < 29; j ++)
-		bits[j] = new NormalParticle();
-	bits[30] = new OddballParticle();
+	Particle[] particles = new Particle[30];
+	for(int j = 0; j < particles.length; j ++)
+	{
+		
+		particles[j] = new NormalParticle();
+	}
+	particles[0] = new OddballParticle();
+	//particles[30] = new OddballParticle();
+	//for(int j = 0; j < 30; j++)
+	//{
+	//	particles[j].move();
+	//}
 }
 void draw()
 {
-	for(int i = 0; i < bits.length; i ++)
+	
+	//Particle[] particles = new Particle[30];
+	for(int j = 0; j< particles.length; j ++)
 	{
-		bits[i].move();
-		bits[i].show();
+		particles[j].move();
+		particles[j].show();
 	}
+	
 }
 
-class NormalParticle
+class NormalParticle implements Particle
 {
 	double dX,dY, dSpeed, dAngle;
 	int dColor;
@@ -39,12 +51,12 @@ class NormalParticle
 		dAngle = (Math.random() * PI);
 		dColor = color((int)(Math.random() * 255));
 	}
-	void move()
+	public float move()
 	{
 		dX = dX + Math.cos(dAngle * dSpeed);
 		dY = dY + Math.sin(dAngle * dSpeed);
 	}
-	void show()
+	public int show()
 	{
 		color(dColor);
 		ellipse((float)dX,(float)dY, 10, 10);
@@ -52,21 +64,27 @@ class NormalParticle
 }
 interface Particle
 {
-	public void move();
-	public void show();
+	public int move();
+	public int show();
 }
 class OddballParticle implements Particle
 {
-	public void move()
+	int xPos;
+	OddballParticle()
 	{
-
+		xPos = 250;
 	}
-	public void show()
+	public int move()
 	{
-
+		return xPos;
+	}
+	public int show()
+	{
+		//color((int)(Math.random() * 255),(int)(Math.random() * 255),(int)(Math.random() * 255));
+		//ellipse((float)dX,(float)dY, 10, 10);
 	}
 }
-class JumboParticle implements Particle
+class JumboParticle
 {
 	public void move()
 	{
