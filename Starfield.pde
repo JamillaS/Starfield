@@ -1,46 +1,32 @@
 //your code here
 
-NormalParticle[] particles;
-
+Particle[] particles = new Particle[100];
 void setup()
 {
 	background(0);
 	size(400, 400);
-	/*
-	particles = new NormalParticle[30];
-	for(int i = 0; i < particles.length; i ++)
-	{
-		particles[i] = new NormalParticle();
-		particles[0] = new OddballParticle();
-	}
-	*/
-
-
-	Particle[] particles = new Particle[30];
-	for(int j = 0; j < 29; j ++)
+	
+	//Particle[] particles = new Particle[30];
+	for(int j = 0; j < 100; j ++)
 	{
 		
 		particles[j] = new NormalParticle();
 	}
-	particles[29] = new OddballParticle();
-	//particles[30] = new OddballParticle();
-	for(int j = 0; j < particles.length; j++)
-	{
-		particles[j].move();
-		particles[j].show();
-	}
+	particles[99] = new OddballParticle();
+	
+	
 }
+
 void draw()
 {
 	
-	
-	/*Particle[] particles = new NormalParticle[30];
-	for (int j = 0; j < 29; j ++)
+	background(0);
+	for (int i = 0; i < particles.length; i ++)
 	{
-		particles[j].move();
-		particles[j].show();
+		particles[i].move();
+		particles[i].show();
 		
-	}*/
+	}
 
 		
 	
@@ -51,6 +37,7 @@ interface Particle
 	public void move();
 	public void show();
 }
+
 class NormalParticle implements Particle
 {
 	double dX,dY, dSpeed, dAngle;
