@@ -1,13 +1,12 @@
 //your code here
 
-Particle[] particles = new Particle[30];
+Particle[] particles;
 void setup()
 {
 	background(0);
 	size(400, 400);
-	
-	//Particle[] particles = new Particle[30];
-	for(int j = 1; j < 30; j ++)
+	particles = new Particle[30];
+	for(int j = 2; j < 30; j ++)
 	{
 		
 		particles[j] = new NormalParticle();
@@ -22,18 +21,27 @@ void draw()
 {
 	
 	background(0);
+
+
 	for (int j = 1; j < particles.length; j ++)
 	{
+
 		particles[0].move();
 		particles[0].show();
+		particles[1].move();
+		particles[1].show();
 		particles[j].move();
 		particles[j].show();
 		
 	}
 
-		
+		noLoop();
 	
 	
+}
+void mousePressed()
+{
+	redraw();
 }
 interface Particle
 {
@@ -72,10 +80,10 @@ class OddballParticle implements Particle
 	int dColor;
 	OddballParticle()
 	{
-		dX = 150;
-		dY = 150;
-		dSpeed = 8.25;
-		dAngle = (Math.random() * PI);
+		dX = 100;
+		dY = 100;
+		dSpeed = 0.25;
+		dAngle = ((int)(Math.random() * PI));
 		dColor = color((int)(Math.random() * 255));
 	}
 	public void move()
@@ -86,9 +94,9 @@ class OddballParticle implements Particle
 	}
 	public void show()
 	{
-		strokeWeight(3);
-		fill((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
-		ellipse((float)dX,(float)dY, 5, 5);
+		noStroke();
+		fill(197);
+		ellipse((float)dX,(float)dY, 50, 50);
 	}
 }
 
@@ -96,8 +104,8 @@ class JumboParticle extends NormalParticle
 {
 	JumboParticle()
 	{
-		double dX,dY, dSpeed, dAngle;
-		int dColor;
+		double dAngle = (Math.random() * PI);
+		double dSpeed = 0.25;
 	}
 	void move()
 	{
@@ -106,7 +114,7 @@ class JumboParticle extends NormalParticle
 	}
 	void show()
 	{
-		fill(dColor, dColor, (int)(Math.random() * 255));
+		fill(255);
 		ellipse((float)dX,(float)dY, 10, 10);
 	}
 }
