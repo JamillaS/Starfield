@@ -23,26 +23,22 @@ void draw()
 	background(0);
 
 
-	for (int j = 1; j < particles.length; j ++)
+	for (int j = 2; j < particles.length; j ++)
 	{
-
-		particles[0].move();
-		particles[0].show();
-		particles[1].move();
-		particles[1].show();
-		particles[j].move();
-		particles[j].show();
 		
+		//particles[0].move();
+		//particles[0].show();
+		particles[1].move();
+		
+		particles[j].move();
+		
+		particles[j].show();
+		particles[1].show();
 	}
+	
+	
+}
 
-		noLoop();
-	
-	
-}
-void mousePressed()
-{
-	redraw();
-}
 interface Particle
 {
 	public void move();
@@ -53,12 +49,13 @@ class NormalParticle implements Particle
 {
 	double dX,dY, dSpeed, dAngle;
 	int dColor;
+	int dSize = 3;
 	NormalParticle()
 	{
 		dX = 150;
 		dY = 150;
 		dSpeed = 8.25;
-		dAngle = (Math.random() * PI);
+		dAngle = Math.random() * PI;
 		dColor = color((int)(Math.random() * 255),255,(int)(Math.random() * 255));
 	}
 	public void move()
@@ -70,7 +67,7 @@ class NormalParticle implements Particle
 	{
 		noStroke();
 		color(dColor,dColor,dColor);
-		ellipse((float)dX,(float)dY, 3, 3);
+		ellipse((float)dX,(float)dY, dSize, dSize);
 	}
 }
 
@@ -78,44 +75,35 @@ class OddballParticle implements Particle
 {
 	double dX,dY, dSpeed, dAngle;
 	int dColor;
+	int dSize = 10;
 	OddballParticle()
 	{
 		dX = 100;
 		dY = 100;
-		dSpeed = 0.25;
-		dAngle = ((int)(Math.random() * PI));
+		dSpeed = 8.25;
+		dAngle = Math.random() * PI;
 		dColor = color((int)(Math.random() * 255));
 	}
 	public void move()
 	{
-		dX = dX + Math.cos(dAngle * dSpeed);
-		dY = dY + Math.sin(dAngle * dSpeed);
+		dX = dX + Math.cos(5*dAngle * dSpeed);
+		dY = dY + Math.sin(5*dAngle * dSpeed);
 
 	}
 	public void show()
 	{
 		noStroke();
-		fill(197);
-		ellipse((float)dX,(float)dY, 50, 50);
+		color(dColor,dColor,dColor);
+		ellipse((float)dX,(float)dY, dSize, dSize);
 	}
 }
 
 class JumboParticle extends NormalParticle
 {
+	
 	JumboParticle()
 	{
-		double dAngle = (Math.random() * PI);
-		double dSpeed = 0.25;
-	}
-	void move()
-	{
-		dX = dX + Math.cos(dAngle * dSpeed);
-		dY = dY + Math.sin(dAngle * dSpeed);
-	}
-	void show()
-	{
-		fill(255);
-		ellipse((float)dX,(float)dY, 10, 10);
+		dSize = 20;
 	}
 }
 
