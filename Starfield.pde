@@ -94,8 +94,8 @@ class OddballParticle implements Particle
 	{
 		//dX += Math.sin(dAngle * dSpeed);
 		//dY -= Math.cos(dAngle * dSpeed);
-		dX += (int)(Math.random() * 5);
-		dY += (int)(Math.random() * 3);
+		dX += (int)(Math.random() * 3 - 1);
+		dY += (int)(Math.random() * 3 - 1);
 	}
 	public void show()
 	{
@@ -123,7 +123,7 @@ class JumboParticle extends NormalParticle
 	}
 	public void show()
 	{
-		fill(dColor,255,255);
+		fill(255,255,dColor);
 		ellipse((float)dX,(float)dY, dSize, dSize);
 	}
 }
